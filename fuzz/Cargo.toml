@@ -33,3 +33,8 @@ doc = false
 
 [patch.crates-io]
 soroban-wasmi.path = "../../wasmi/crates/wasmi"
+soroban-env-host.path = "../../rs-soroban-env/soroban-env-host"
+soroban-env-common.path = "../../rs-soroban-env/soroban-env-common"
+
+[patch."https://github.com/stellar/wasmi"]
+soroban-wasmi.path = "../../wasmi/crates/wasmi"

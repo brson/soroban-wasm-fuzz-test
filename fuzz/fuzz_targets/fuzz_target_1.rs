@@ -16,7 +16,7 @@ mod example_token {
 
 #[derive(Arbitrary, Debug)]
 struct Input {
-    amount: u32,
+    amount: i128,
 }
 
 fn run(input: Input) {
@@ -32,8 +32,13 @@ fn run(input: Input) {
 
     token_client.initialize(
         &admin_addr,
-        &input.amount,
+        &10,
         &String::from_str(&env, "Token"),
         &String::from_str(&env, "TKN"),
+    );
+
+    let _ = token_client.try_mint(
+        &admin_addr,
+        &input.amount,
     );
 }
