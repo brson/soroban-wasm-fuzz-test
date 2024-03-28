@@ -48,3 +48,13 @@ fn run(input: Input) {
         COUNTERS[input.which_pc as usize] += 1;
     }
 }
+
+#[no_mangle]
+extern "C" fn __sanitizer_symbolize_pc(
+    pc: *const usize,
+    fmt: *const u8,
+    out_buf: *mut u8,
+    out_buf_size: usize,
+) {
+    eprintln!("XXXX");
+}
