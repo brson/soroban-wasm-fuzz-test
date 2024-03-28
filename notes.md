@@ -19,7 +19,7 @@ and will need a way to distinguish native PCs
 from wasm PCs.
 
 ```
-cargo +nightly fuzz run fuzz_target_2 --sanitizer=none
+cargo +nightly fuzz run fuzz_target_2 --sanitizer=none -- -print_pcs=1
 ```
 
 ---
