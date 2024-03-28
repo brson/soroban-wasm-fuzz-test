@@ -31,6 +31,12 @@ path = "fuzz_targets/fuzz_target_1.rs"
 test = false
 doc = false
 
+[[bin]]
+name = "fuzz_target_2"
+path = "fuzz_targets/fuzz_target_2.rs"
+test = false
+doc = false
+
 [patch.crates-io]
 soroban-wasmi.path = "../../wasmi/crates/wasmi"
 soroban-env-host.path = "../../rs-soroban-env/soroban-env-host"
