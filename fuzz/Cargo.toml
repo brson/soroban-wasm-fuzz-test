@@ -38,10 +38,10 @@ test = false
 doc = false
 
 [patch.crates-io]
-soroban-wasmi.path = "../../wasmi/crates/wasmi"
-soroban-env-host.path = "../../rs-soroban-env/soroban-env-host"
-soroban-env-common.path = "../../rs-soroban-env/soroban-env-common"
-libfuzzer-sys.path = "../../libfuzzer"
+soroban-wasmi.path = "../submodules/wasmi/crates/wasmi"
+soroban-env-host.path = "../submodules/rs-soroban-env/soroban-env-host"
+soroban-env-common.path = "../submodules/rs-soroban-env/soroban-env-common"
+libfuzzer-sys.path = "../submodules/libfuzzer"
 
 [patch."https://github.com/stellar/wasmi"]
-soroban-wasmi.path = "../../wasmi/crates/wasmi"
+soroban-wasmi.path = "../submodules/wasmi/crates/wasmi"
