@@ -29,8 +29,16 @@ wasmi fuzzable with `cargo-fuzz` / libfuzzer, and understand better
 the basic problems that need to be solved.
 
 I think it is doable, but the effort is significant.
-Ultimately the compilation pipeline will change enough that we'll
-probably want a `soroban fuzz` command to encapsulate/replace `cargo-fuzz`.
+
+We'll end up doing at least the following:
+
+- modifying `wasmi` to register branches and function entries for every wasm module
+- implementing a custom `__sanitizer_symbolize_pc` function to symbolize both
+  native and wasm function names
+- implementing a `soroban fuzz` command to either wrap or replace `cargo-fuzz`,
+  because `cargo-fuzz` will need to be invoked with `--sanitizer=none`.
+
+---
 
 There are three basic components that collaborate to fuzz LLVM-compiled code:
 
@@ -56,7 +64,10 @@ functions which are called by libfuzzer. This is why e.g. in #1056 we were
 able to work around a bug on macos by mysteriously using thread sanitizer instead
 of address sanitizer - they both provide the same common functions.
 Of particular interest is `__sanitizer_symbolize_pc` which turns a PC into
-a function name, a very gnarly system-dependent operation.
+a function name for display, a very gnarly system-dependent operation.
+On linix at least the fuzzer seems to be able to operate, with degraded capabilities,
+with no sanitizer at all (passing `--sanitizer=none` to `cargo-fuzz`) - all
+the sanitizer functions are "weak".
 
 The big problem we are going to run into is that these components
 are designed with the expectation that PCs live in the address space of the
